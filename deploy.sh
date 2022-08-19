@@ -13,13 +13,11 @@ cd docs/.vuepress/dist
 # echo 'www.example.com' > CNAME
 
 git init
-git add -A
+git add dist -f
 git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io
-git push -f git@github.com:mrtdmrmrt/mrtdmrmrt.github.io.git master
+git subtree push --prefix dist origin gh-pages
 
-# if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:mrtdmrmrt/mrtdmrmrt.github.io.git master:gh-pages
 
 cd -
