@@ -6,20 +6,33 @@ set -e
 # build
 npm run docs:build
 
-# navigate into the build output directory
-cd docs/.vuepress/dist
+# Clone the deployment repo
+git clone https://github.com/mrtdmrmrt/mrtdmrmrt.github.io.git gitpush
+cd gitpush
+
+# Delete all previous files in the repo
+find . -type f \! \( -regex "\.\/\..*" -or -name '.' \) -exec rm -f {} +
+find . -type d \! \( -regex "\.\/.*\/.*" -or -name '.' -or -name '.git' \)  -exec rm -r {} +
+cd ..
+
+# Copy new dist files to the repo
+cp -r docs/.vuepress/dist/. gitpush
+cd gitpush
+
 
 # if you are deploying to a custom domain
 # echo 'www.example.com' > CNAME
 
-git init
+# Commit to git
 git add -A
-git commit -m 'deploy'
+git commit -m 'Deploy'
 
 # if you are deploying to https://<USERNAME>.github.io
-# git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
+git push -f https://github.com/mrtdmrmrt/mrtdmrmrt.github.io.git master
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
 
-cd -
+cd ..
+rm -r gitpush
+chown -R alam: node_modules
