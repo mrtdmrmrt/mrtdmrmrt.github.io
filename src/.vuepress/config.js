@@ -160,7 +160,7 @@ module.exports = {
       {
         name: "LinkedIn",
         icon: ["fab", "linkedin"],
-        url: "https://www.linkedin.com/in/mert-demir-6784b4168/",
+        url: "https://www.linkedin.com/in/mertdemirr/",
       },
       {
         name: "Medium",
